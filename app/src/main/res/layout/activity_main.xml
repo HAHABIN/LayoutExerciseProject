@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.habin.shopcar.MainActivity">
+
+
+    <include layout="@layout/app_title" />
+    <!--<include layout="@layout/shop_item_title"/>-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_alignParentBottom="true"
+        android:background="#cccccc" />
+    <ExpandableListView
+        android:id="@+id/elv_shopping_car"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#ededed"
+        android:divider="@null"
+        android:groupIndicator="@null"
+        android:scrollbars="none"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2.5"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/all_chekbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="4dp"
+                style="@style/mycheckbox"
+                android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+                android:gravity="center"
+                android:minHeight="64dp"
+                android:paddingLeft="10dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:visibility="visible" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="合计:"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_total_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="￥0.00"
+                android:textColor="@color/textWhite2"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_go_to_pay"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#E24146"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="结算(0)"
+            android:textColor="#FAFAFA" />
+    </LinearLayout>
+</LinearLayout>

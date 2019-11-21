@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">ShopCar</string>
+    <drawable name="clr_normal">#f2e2d8</drawable>
+    <drawable name="clr_pressed">#f2cfd2</drawable>
+</resources>
