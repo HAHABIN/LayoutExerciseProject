@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.habin.shopcar.R;
+import com.example.habin.shopcar.cutleryRecycling.adapter.BeRecyledAdapter;
 
 
 public class MyRecyleFragment extends Fragment {
@@ -17,7 +18,11 @@ public class MyRecyleFragment extends Fragment {
         return new MyRecyleFragment();
     }
 
+    private SwipeView mSwipeView;
+    private BeRecyledAdapter mAdapter;
+    private int mPageNo = 1;
     private View mView;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -28,6 +33,23 @@ public class MyRecyleFragment extends Fragment {
     }
 
     private void initView() {
+
+        mSwipeView = mView.findViewById(R.id.swipeView);
+        mAdapter = new BeRecyledAdapter(getContext(),"9");
+        mSwipeView.setAdapter(mAdapter);
+        mSwipeView.setReLoadAble(true);
+        mSwipeView.setOnRefreshListener(new SwipeView.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                mPageNo = 1;
+            }
+        });
+        mSwipeView.setOnReLoadListener(new SwipeView.OnReLoadListener() {
+            @Override
+            public void onLoad() {
+                mPageNo++;
+            }
+        });
     }
 
 

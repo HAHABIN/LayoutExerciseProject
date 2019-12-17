@@ -36,7 +36,7 @@ public class BeRecyledFragment extends Fragment {
 
     private void initView() {
         mSwipeView = mView.findViewById(R.id.swipeView);
-        mAdapter = new BeRecyledAdapter(getContext());
+        mAdapter = new BeRecyledAdapter(getContext(),"7");
         mSwipeView.setAdapter(mAdapter);
         mSwipeView.setReLoadAble(true);
         mSwipeView.setOnRefreshListener(new SwipeView.OnRefreshListener() {
