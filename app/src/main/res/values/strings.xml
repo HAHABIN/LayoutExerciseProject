@@ -2,4 +2,23 @@
     <string name="app_name">ShopCar</string>
     <drawable name="clr_normal">#f2e2d8</drawable>
     <drawable name="clr_pressed">#f2cfd2</drawable>
+
+
+    <string-array name="tableware_recycle_status">
+        <item>待回收</item>
+        <item>已回收 </item>
+        <item>我回收的</item>
+    </string-array>
+
+    <string name="CutleryRecyclingTitle">餐具回收</string>
+
+    <string name="swipe_loading_more">正在加载更多...</string>
+    <string name="swipe_load_finish">没有更多了～</string>
+
+    <string name="pull_to_refresh_complete">最近更新: </string>
+    <string name="refresh_down_text">下拉刷新</string>
+    <string name="refresh_release_text">松开刷新数据</string>
+    <string name="pull_to_refresh_refreshing_label">正在加载...</string>
+    <string name="refresh_more">松开载入更多</string>
+
 </resources>

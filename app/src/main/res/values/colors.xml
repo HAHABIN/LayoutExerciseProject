@@ -12,4 +12,27 @@
     <color name="textgrey">#515151</color>
     <color name="textred">#FF5050</color>
     <color name="money">#f20e0e</color>
+
+    <color name="firebrick">#b22222</color><!--火砖色 -->
+    <color name="blue_4b98e8">#4b98e8</color>
+    <color name="gray_efefef">#efefef</color>
+    <color name="white_f5">#F5F5F5</color>
+    <color name="black_26">#262626</color>
+    <color name="yellow_F3992C">#F3992C</color>
+    <color name="white_fa">#fafafa</color>
+    <color name="white_eb">#EBEBEB</color>
+    <color name="yellow_fc">#FCB660</color>
+    <color name="white">#ffffff</color><!--白色 -->
+    <color name="gray_text">#cccccc</color>
+    <color name="gray_999">#999999</color>
+    <color name="gray_666">#666666</color>
+    <color name="gray_333">#333333</color>
+    <color name="gray">#808080</color><!--灰色 -->
+    <color name="black">#000000</color><!--黑色 -->
+
+    <color name="transparent">#00000000</color> <!-- 透明 -->
+    <color name="transparent50">#50000000</color> <!-- 透明 -->
+    <color name="transparent30">#30000000</color> <!-- 透明 -->
+    <color name="color_gray_emoji_n">#cccccc</color>
+    <color name="color_gray_emoji_p">#aaaaaa</color>
 </resources>
