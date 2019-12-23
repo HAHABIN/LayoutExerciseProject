@@ -13,9 +13,6 @@ public class VpAdapter extends FragmentStatePagerAdapter {
     private List<Fragment> mFragmentList;
     private String[] mTitleList;
 
-    public VpAdapter(FragmentManager fm) {
-        super(fm);
-    }
 
     public VpAdapter(FragmentManager fm, List<Fragment> mFragmentList, String[] mTitleList) {
         super(fm);

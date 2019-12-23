@@ -63,6 +63,14 @@
             android:text="取消"
             android:textColor="@color/black" />
     </LinearLayout>
+
+    <com.example.habin.shopcar.cutleryRecycling.view.SwipeView
+        android:id="@+id/swipeView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        />
+
     <LinearLayout
         android:id="@+id/ll_no_order"
         android:layout_width="match_parent"
@@ -86,5 +94,7 @@
             android:textSize="16sp"
             />
     </LinearLayout>
+
+
 
 </LinearLayout>

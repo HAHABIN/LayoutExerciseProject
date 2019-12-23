@@ -21,4 +21,7 @@
     <string name="pull_to_refresh_refreshing_label">正在加载...</string>
     <string name="refresh_more">松开载入更多</string>
 
+    <string name="complete_time_des">配送完成时间 :</string>
+    <string name="order_time_des">下单时间 :</string>
+
 </resources>

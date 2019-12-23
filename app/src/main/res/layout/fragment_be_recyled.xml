@@ -5,12 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white_f5"
-    tools:context=".cutleryRecycling.BeRecyledFragment">
+    tools:context=".cutleryRecycling.fragment.BeRecyledFragment">
     <View
         android:layout_width="match_parent"
         android:layout_height="10dp"
         android:background="@color/white_eb" />
-    <com.example.habin.shopcar.cutleryRecycling.SwipeView
+    <com.example.habin.shopcar.cutleryRecycling.view.SwipeView
         android:id="@+id/swipeView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
