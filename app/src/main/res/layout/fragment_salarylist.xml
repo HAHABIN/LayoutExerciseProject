@@ -1,0 +1,16 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/white_eb"
+            android:layout_marginHorizontal="10dp"
+            />
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_salaryList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="6dp"/>
+</RelativeLayout>

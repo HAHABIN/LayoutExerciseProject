@@ -26,4 +26,11 @@
         <!-- 模糊 -->
         <item name="android:windowBackground">@android:color/transparent</item>
     </style>
+
+
+    <!--设置Tablayout字体大小-->
+    <style name="TabLayoutTextSize">
+        <item name="android:textSize">14sp</item>
+    </style>
+
 </resources>

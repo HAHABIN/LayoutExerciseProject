@@ -1,15 +1,8 @@
 package com.example.habin.shopcar.utils;
 
 
-import com.example.habin.shopcar.gson.ShopCar;
-import com.example.habin.shopcar.gson.items;
+import com.example.habin.shopcar.shopCar.gson.ShopCar;
 import com.google.gson.Gson;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Create by HABIN on 2019/11/1813:06

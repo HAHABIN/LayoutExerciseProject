@@ -1,8 +1,7 @@
-package com.example.habin.shopcar.cutleryRecycling.service;
+package com.example.habin.shopcar.cutleryRecycling.http;
 
 import com.example.habin.shopcar.cutleryRecycling.bean.RecycleOrderListEntity;
-
-import org.json.JSONObject;
+import com.example.habin.shopcar.salaryTest.Entity.recordDetailsEntity;
 
 import io.reactivex.Observable;
 import retrofit2.http.Headers;
@@ -27,4 +26,6 @@ public interface ApiService {
 
     @POST("userAddress/getBuildingList")
     Observable<Object> getBuildingList();
+
+
 }

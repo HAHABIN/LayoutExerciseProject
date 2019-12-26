@@ -1,8 +1,10 @@
 package com.example.habin.shopcar.cutleryRecycling.adapter;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -11,12 +13,12 @@ import com.example.habin.shopcar.R;
 import com.example.habin.shopcar.cutleryRecycling.bean.RecycleOrderListEntity;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class BeRecyledAdapter extends ContentAdapter {
+public class BeRecyledAdapter extends BaseAdapter {
 
-    private String mStatus;
     private Context mContext;
     private List<RecycleOrderListEntity.ItemBean> mDataList;
     private IitemCallback mCallback;
@@ -39,10 +41,18 @@ public class BeRecyledAdapter extends ContentAdapter {
     }
 
     public void setDataList(List<RecycleOrderListEntity.ItemBean> dataList) {
-        if (dataList != null) {
-            this.mDataList = dataList;
-            notifyDataSetChanged();
+        if(mDataList == null){
+            mDataList = new ArrayList<>();
+            mDataList.addAll(dataList);
+        }else{
+            mDataList.clear();
+            mDataList.addAll(dataList);
         }
+        notifyDataSetChanged();
+//        if (dataList != null) {
+//            this.mDataList = dataList;
+//            notifyDataSetChanged();
+//        }
     }
 
     @Override
@@ -51,10 +61,21 @@ public class BeRecyledAdapter extends ContentAdapter {
     }
 
     @Override
+    public Object getItem(int position) {
+        return null;
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return 0;
+    }
+
+    @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder viewHolder;
+        ViewHolder viewHolder ;
         if (convertView == null) {
-            convertView = View.inflate(mContext, R.layout.item_recyle, null);
+//            convertView = LayoutInflater.from(mContext).inflate(R.layout.item_test,parent,false);
+            convertView = View.inflate(mContext, R.layout.item_test, null);
             viewHolder = new ViewHolder(convertView);
             convertView.setTag(viewHolder);
         } else {

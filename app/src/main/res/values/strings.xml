@@ -23,5 +23,20 @@
 
     <string name="complete_time_des">配送完成时间 :</string>
     <string name="order_time_des">下单时间 :</string>
+    <string name="note_text">这里显示备注信息，默认预留4行的显示区域，多余的加滚动条；</string>
 
+
+    <string-array name="salary_status">
+        <item>基本项目</item>
+        <item>扣费项目 </item>
+        <item>实发工资</item>
+        <item>备注</item>
+    </string-array>
+
+    <string-array name="salary_name">
+        <item>应发工资</item>
+        <item>扣费项目 </item>
+        <item>实发工资</item>
+        <item>备注</item>
+    </string-array>
 </resources>

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.habin.shopcar.MainActivity">
+    tools:context="com.example.habin.shopcar.shopCar.MainActivity">
 
 
     <include layout="@layout/app_title" />

@@ -1,8 +1,7 @@
-package com.example.habin.shopcar;
+package com.example.habin.shopcar.shopCar;
 
 import android.content.Context;
 import android.graphics.Paint;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,12 +11,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.habin.shopcar.gson.goods;
-import com.example.habin.shopcar.gson.items;
+import com.example.habin.shopcar.R;
+import com.example.habin.shopcar.shopCar.gson.goods;
+import com.example.habin.shopcar.shopCar.gson.items;
 
 import java.util.List;
-
-import butterknife.ButterKnife;
 
 /**
  * Create by HABIN on 2019/11/1911:35

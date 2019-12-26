@@ -18,10 +18,12 @@ import com.example.habin.shopcar.cutleryRecycling.fragment.ToBeRecyledFragment;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 public class CutleryRecyclingActivity extends AppCompatActivity {
 
 
-    public static final int REQUEST_CALL_PERMISSION = 10111; //拨号请求码
     private ImageView mIvBack;
     private ImageView mIvSearch;
     private TabLayout mTlTabs;
@@ -34,6 +36,7 @@ public class CutleryRecyclingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cutlery_recycling);
+        ButterKnife.bind(this);
         initView();
         initEvent();
     }
@@ -70,12 +73,14 @@ public class CutleryRecyclingActivity extends AppCompatActivity {
         mIvSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(CutleryRecyclingActivity.this,SearchRecylingActivity.class));
-//               ToBeRecyledFragment fragment = (ToBeRecyledFragment) mVpAdapter.getItem(0);
-//                fragment.setName("HHHHH");
+                startActivity(new Intent(CutleryRecyclingActivity.this, SearchRecylingActivity.class));
             }
         });
     }
 
 
+    @OnClick(R.id.iv_back)
+    public void onViewClicked() {
+        finish();
+    }
 }

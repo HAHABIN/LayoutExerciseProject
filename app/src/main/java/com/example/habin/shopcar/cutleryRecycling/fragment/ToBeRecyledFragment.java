@@ -1,10 +1,9 @@
 package com.example.habin.shopcar.cutleryRecycling.fragment;
 
 
-import android.content.Intent;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -20,9 +19,8 @@ import com.example.habin.shopcar.R;
 import com.example.habin.shopcar.cutleryRecycling.view.SwipeView;
 import com.example.habin.shopcar.cutleryRecycling.adapter.BeRecyledAdapter;
 import com.example.habin.shopcar.cutleryRecycling.bean.RecycleOrderListEntity;
-import com.example.habin.shopcar.cutleryRecycling.service.HttpEngine;
-import com.example.habin.shopcar.cutleryRecycling.view.AlertDialog;
-import com.google.gson.Gson;
+import com.example.habin.shopcar.cutleryRecycling.http.HttpEngine;
+import com.example.habin.shopcar.cutleryRecycling.view.AlertDialogView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -41,11 +39,21 @@ import io.reactivex.disposables.Disposable;
 public class ToBeRecyledFragment extends Fragment implements View.OnClickListener, BeRecyledAdapter.IitemCallback {
 
 
+    private static final String TAG = "ToBeRecyledFragment";
+
     public static ToBeRecyledFragment newInstance() {
 
         return new ToBeRecyledFragment();
     }
 
+    public static ToBeRecyledFragment newInstance(String data) {
+        ToBeRecyledFragment fragment = new ToBeRecyledFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("data",data);
+        fragment.setArguments(bundle);
+
+        return fragment;
+    }
 
     private TextView mTvFirst;
     private ImageView mIvFirst;
@@ -66,32 +74,38 @@ public class ToBeRecyledFragment extends Fragment implements View.OnClickListene
     private String mOrdersType = "";//选择筛选排序 时间time,地址building
     private String mBuilding = "";
     private int mChecked = 1; //1 默认为最先配送选中  2为回收区域
-    private View mView;
+        private View mView;
     private List<RecycleOrderListEntity.ItemBean> mDataList;
 
 
 
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        Bundle bundle = this.getArguments();
-
-        String result = null;
-        if (bundle != null) {
-            result = bundle.getString("data");
-            Toast.makeText(getContext(), result, Toast.LENGTH_LONG).show();
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        Log.d(TAG, "onActivityCreated: "+getActivity());
+        String url = null;
+        if (url!=null){
+            Bundle arguments = this.getArguments();
+            String name = arguments.getString("data");
+            Toast.makeText(getActivity(),name, Toast.LENGTH_SHORT).show();
         }
-
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        Log.d(TAG, "onCreateView: "+getActivity());
+        if (mView != null) {
+            ViewGroup parent = (ViewGroup) mView.getParent();
+            if (parent != null) {
+                parent.removeView(mView);
+            }
+            return mView;
+        }
         mView = inflater.inflate(R.layout.fragment_to_be_recyled, container, false);
-
-
-        initView();
+        initView(mView);
         initEvent();
 
         return mView;
@@ -103,15 +117,15 @@ public class ToBeRecyledFragment extends Fragment implements View.OnClickListene
         mAdapter.notifyDataSetChanged();
     }
 
-    private void initView() {
+    private void initView(View view) {
 
 
-        mTvFirst = mView.findViewById(R.id.tv_first_delivery);
-        mIvFirst = mView.findViewById(R.id.iv_first_delivery);
-        mTvArea = mView.findViewById(R.id.tv_recycling_area);
-        mIvArea = mView.findViewById(R.id.iv_recycling_area);
+        mTvFirst = view.findViewById(R.id.tv_first_delivery);
+        mIvFirst = view.findViewById(R.id.iv_first_delivery);
+        mTvArea = view.findViewById(R.id.tv_recycling_area);
+        mIvArea = view.findViewById(R.id.iv_recycling_area);
 
-        mSwipeView = mView.findViewById(R.id.swipeView);
+        mSwipeView = view.findViewById(R.id.swipeView);
         mAdapter = new BeRecyledAdapter(getContext(), this);
         mSwipeView.setAdapter(mAdapter);
         mSwipeView.setReLoadAble(true);
@@ -184,6 +198,7 @@ public class ToBeRecyledFragment extends Fragment implements View.OnClickListene
         HttpEngine.getDataList(mPageNo, mPageSize, "8", null, mBuilding, mOrdersType, new Observer<RecycleOrderListEntity>() {
             @Override
             public void onSubscribe(Disposable d) {
+
             }
 
             @Override
@@ -234,18 +249,18 @@ public class ToBeRecyledFragment extends Fragment implements View.OnClickListene
 
     @Override
     public void confirmRecycle(final long orderId) {
-        AlertDialog dialog = new AlertDialog(getActivity());
+        AlertDialogView dialog = new AlertDialogView(getActivity());
         dialog.setTitle("回收");
         dialog.setMessage("是否确认回收");
         dialog.setConfimStr("确定");
-        dialog.setListener(new AlertDialog.onClickListener() {
+        dialog.setListener(new AlertDialogView.onClickListener() {
             @Override
-            public void cancelClick(AlertDialog dialog) {
+            public void cancelClick(AlertDialogView dialog) {
                 dialog.dismiss();
             }
 
             @Override
-            public void confirmClick(AlertDialog dialog) {
+            public void confirmClick(AlertDialogView dialog) {
                 RecConfirm(orderId);
             }
         });
@@ -370,5 +385,47 @@ public class ToBeRecyledFragment extends Fragment implements View.OnClickListene
         pvOptions.setPicker(dList);//条件选择器
 
         pvOptions.show();
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Log.d(TAG, "onCreate: "+getActivity());
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Log.d(TAG, "onStart: "+getActivity());
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d(TAG, "onResume: "+getActivity());
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.d(TAG, "onPause: "+getActivity());
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Log.d(TAG, "onStop: "+getActivity());
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        Log.d(TAG, "onDestroyView: "+getActivity());
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.d(TAG, "onDestroy: "+getActivity());
     }
 }

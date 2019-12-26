@@ -1,8 +1,6 @@
 package com.example.habin.shopcar.cutleryRecycling.fragment;
 
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -14,7 +12,7 @@ import com.example.habin.shopcar.R;
 import com.example.habin.shopcar.cutleryRecycling.view.SwipeView;
 import com.example.habin.shopcar.cutleryRecycling.adapter.BeRecyledAdapter;
 import com.example.habin.shopcar.cutleryRecycling.bean.RecycleOrderListEntity;
-import com.example.habin.shopcar.cutleryRecycling.service.HttpEngine;
+import com.example.habin.shopcar.cutleryRecycling.http.HttpEngine;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +27,7 @@ public class MyRecyleFragment extends Fragment implements BeRecyledAdapter.Iitem
     private TextView mTvDailyNum;
     private TextView mTvMonNum;
     private TextView mTvHisNum;
+    private View mView;
 
     public static MyRecyleFragment newInstance() {
         return new MyRecyleFragment();
@@ -37,27 +36,32 @@ public class MyRecyleFragment extends Fragment implements BeRecyledAdapter.Iitem
     private SwipeView mSwipeView;
     private BeRecyledAdapter mAdapter;
     private int mPageNo = 1;
-    private View mView;
     private int mPageSize = 10;
     private List<RecycleOrderListEntity.ItemBean> mDataList;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        if (mView != null) {
+            ViewGroup parent = (ViewGroup) mView.getParent();
+            if (parent != null) {
+                parent.removeView(mView);
+            }
+            return mView;
+        }
         mView = inflater.inflate(R.layout.fragment_my_recyle, container, false);
-        initView();
+        initView(mView);
         return mView;
-        // Inflate the layout for this fragment
     }
 
 
-    private void initView() {
-        mTvDailyNum = mView.findViewById(R.id.tv_daily_order_num);
-        mTvMonNum = mView.findViewById(R.id.tv_month_order_num);
-        mTvHisNum = mView.findViewById(R.id.tv_history_order_num);
+    private void initView(View view) {
+        mTvDailyNum = view.findViewById(R.id.tv_daily_order_num);
+        mTvMonNum = view.findViewById(R.id.tv_month_order_num);
+        mTvHisNum = view.findViewById(R.id.tv_history_order_num);
 
-        mSwipeView = mView.findViewById(R.id.swipeView);
-        mAdapter = new BeRecyledAdapter(getContext(),this);
+        mSwipeView = view.findViewById(R.id.swipeView);
+        mAdapter = new BeRecyledAdapter(getContext(), this);
         mSwipeView.setAdapter(mAdapter);
         mSwipeView.setReLoadAble(true);
         mSwipeView.setOnRefreshListener(new SwipeView.OnRefreshListener() {

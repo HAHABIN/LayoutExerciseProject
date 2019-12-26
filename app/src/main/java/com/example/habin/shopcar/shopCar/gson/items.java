@@ -1,4 +1,4 @@
-package com.example.habin.shopcar.gson;
+package com.example.habin.shopcar.shopCar.gson;
 
 import com.google.gson.annotations.SerializedName;
 

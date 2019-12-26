@@ -4,10 +4,10 @@
     android:layout_height="60dp"
     android:background="#eaeaea"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.habin.shopcar.MainActivity">
+    tools:context="com.example.habin.shopcar.shopCar.MainActivity">
 
     <TextView
-        android:id="@+id/bg_title"
+        android:id="@+id/tv_back"
         android:layout_width="30dp"
         android:layout_height="35dp"
         android:layout_centerVertical="true"

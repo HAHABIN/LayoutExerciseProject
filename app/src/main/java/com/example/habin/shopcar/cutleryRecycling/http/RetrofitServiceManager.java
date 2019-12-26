@@ -1,4 +1,4 @@
-package com.example.habin.shopcar.cutleryRecycling.service;
+package com.example.habin.shopcar.cutleryRecycling.http;
 
 import java.util.concurrent.TimeUnit;
 
@@ -13,6 +13,7 @@ public class RetrofitServiceManager {
     private static final int DEFAULT_READ_TIME = 30;
     private final OkHttpClient okHttpClient;
     private static final String REQUEST_PATH = "https://ej.gzkjxy.net/app/";
+//    private static final String REQUEST_PATH = "https://hwej.pt-ts.my-campus.cn";//广外
     private final Retrofit retrofit;
 
     private RetrofitServiceManager() {

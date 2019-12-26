@@ -1,16 +1,16 @@
-package com.example.habin.shopcar;
+package com.example.habin.shopcar.shopCar;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.habin.shopcar.gson.ShopCar;
-import com.example.habin.shopcar.gson.items;
+import com.example.habin.shopcar.R;
+import com.example.habin.shopcar.shopCar.gson.ShopCar;
+import com.example.habin.shopcar.shopCar.gson.items;
 import com.example.habin.shopcar.utils.HttpUtils;
 import com.example.habin.shopcar.utils.Uitlity;
 
@@ -27,8 +27,7 @@ import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity {
 
-    @BindView(R.id.bg_title)
-    TextView bgTitle;
+
     @BindView(R.id.shop_car_num)
     TextView shopCarNum;
     @BindView(R.id.elv_shopping_car)
@@ -39,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     TextView tvTotalPrice;
     @BindView(R.id.tv_go_to_pay)
     TextView tvGoToPay;
+
 
     private ShopCar shopCar;
     private List<items> itemsList;
@@ -133,9 +133,7 @@ public class MainActivity extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Log.d("MainAc", "onResponse: " + json);
                             shopCar = Uitlity.handleShowResponse(json);
-                            Log.d("MainAc", "onResponse: " + shopCar.getItemsList().get(1).toString());
                             itemsList = shopCar.getItemsList();
                             initView();
                             Event();
@@ -148,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    @OnClick({R.id.all_chekbox, R.id.tv_go_to_pay})
+    @OnClick({R.id.all_chekbox, R.id.tv_go_to_pay,R.id.tv_back})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.all_chekbox:
@@ -164,8 +162,13 @@ public class MainActivity extends AppCompatActivity {
                 float totalPrice = myAdapter.calculateTotalPrice();
                 DecimalFormat fnum = new DecimalFormat("##0.00");
                 String totalPrice2 = fnum.format(totalPrice);
-                Toast.makeText(this, "请支付为："+totalPrice2+"元", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "请支付为：" + totalPrice2 + "元", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.tv_back:
+                finish();
                 break;
         }
     }
+
+
 }

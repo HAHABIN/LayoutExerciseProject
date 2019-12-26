@@ -1,8 +1,7 @@
-package com.example.habin.shopcar.cutleryRecycling.service;
+package com.example.habin.shopcar.cutleryRecycling.http;
 
 import com.example.habin.shopcar.cutleryRecycling.bean.RecycleOrderListEntity;
-
-import org.json.JSONObject;
+import com.example.habin.shopcar.salaryTest.Entity.recordDetailsEntity;
 
 import io.reactivex.Observable;
 import io.reactivex.Observer;
@@ -43,6 +42,8 @@ public class HttpEngine {
     public static void getBuildingList(Observer<Object> observer){
         setSubscribe(apiService.getBuildingList(),observer);
     }
+
+
 
     private static <T> void setSubscribe(Observable<T> observable, Observer<T> observer) {
         observable.subscribeOn(Schedulers.io())

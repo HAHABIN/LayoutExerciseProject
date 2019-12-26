@@ -1,10 +1,18 @@
 package com.example.habin.shopcar.cutleryRecycling.fragment;
 
 
+import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +21,7 @@ import com.example.habin.shopcar.R;
 import com.example.habin.shopcar.cutleryRecycling.view.SwipeView;
 import com.example.habin.shopcar.cutleryRecycling.adapter.BeRecyledAdapter;
 import com.example.habin.shopcar.cutleryRecycling.bean.RecycleOrderListEntity;
-import com.example.habin.shopcar.cutleryRecycling.service.HttpEngine;
+import com.example.habin.shopcar.cutleryRecycling.http.HttpEngine;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,32 +34,43 @@ import io.reactivex.disposables.Disposable;
  */
 public class BeRecyledFragment extends Fragment implements BeRecyledAdapter.IitemCallback {
 
-    private View mView;
+    private static final int REQUEST_CODE_ASK_CALL_PHONE = 10100;
     private BeRecyledAdapter mAdapter;
     private SwipeView mSwipeView;
     private int mPageNo = 1;
     private int mPageSize = 10;
     private List<RecycleOrderListEntity.ItemBean> mDataList;
+    private View mView;
+    private String mPhonenum;
 
     public static BeRecyledFragment newInstance() {
         return new BeRecyledFragment();
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        if (mView != null) {
+            ViewGroup parent = (ViewGroup) mView.getParent();
+            if (parent != null) {
+                parent.removeView(mView);
+            }
+            return mView;
+        }
         mView = inflater.inflate(R.layout.fragment_be_recyled, container, false);
 
-        initView();
+
+        initView(mView);
         return mView;
     }
 
 
-    private void initView() {
+    private void initView(View view) {
 
-        mSwipeView = mView.findViewById(R.id.swipeView);
-        mAdapter = new BeRecyledAdapter(getContext(),this);
+        mSwipeView = view.findViewById(R.id.swipeView);
+        mAdapter = new BeRecyledAdapter(getContext(), this);
         mSwipeView.setAdapter(mAdapter);
         mSwipeView.setReLoadAble(true);
         mSwipeView.setOnRefreshListener(new SwipeView.OnRefreshListener() {
@@ -83,8 +102,8 @@ public class BeRecyledFragment extends Fragment implements BeRecyledAdapter.Iite
                 mSwipeView.stopFreshing();
                 if (mResult != null) {
                     List<RecycleOrderListEntity.ItemBean> tempList = mResult.getItem();
-                    if (mDataList==null){
-                        mDataList= new ArrayList<>();
+                    if (mDataList == null) {
+                        mDataList = new ArrayList<>();
                     }
                     if (mPageNo == 1) {
                         mDataList.clear();
@@ -122,12 +141,54 @@ public class BeRecyledFragment extends Fragment implements BeRecyledAdapter.Iite
     public void callPhone(String phoneNum) {
 //        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + phoneNum));
 //        startActivity(intent);
-
+        requestPermmission(phoneNum);
     }
+
 
     @Override
     public void confirmRecycle(long orderId) {
 
     }
+
+
+    public void requestPermmission(String phoneNum) {
+        mPhonenum = phoneNum;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            int checkCallPhonePermission = ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CALL_PHONE);
+            if ((checkCallPhonePermission != PackageManager.PERMISSION_GRANTED)) {
+                ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.CALL_PHONE}, REQUEST_CODE_ASK_CALL_PHONE);
+                return;
+            } else {
+                call(phoneNum);
+            }
+
+        } else {
+            callPhone(phoneNum);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case REQUEST_CODE_ASK_CALL_PHONE:
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                } else {
+                    call(mPhonenum);
+                }
+                break;
+            default:
+                super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+
+    }
+
+    public void call(String phoneNum) {
+        // 执行拨号动作
+        Intent mIntent = new Intent(Intent.ACTION_CALL);
+        mIntent.setData(Uri.parse("tel:" + phoneNum));
+        startActivity(mIntent);
+    }
+
 
 }

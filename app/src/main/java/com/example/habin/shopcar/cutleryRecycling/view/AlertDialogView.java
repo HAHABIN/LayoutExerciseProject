@@ -11,11 +11,11 @@ import android.widget.TextView;
 import com.example.habin.shopcar.R;
 
 
-public class AlertDialog extends Dialog {
+public class AlertDialogView extends Dialog {
 
     public interface onClickListener {
-        void cancelClick(AlertDialog dialog);
-        void confirmClick(AlertDialog dialog);
+        void cancelClick(AlertDialogView dialog);
+        void confirmClick(AlertDialogView dialog);
     }
 
     private Button btn_yes;//确定按钮
@@ -31,7 +31,7 @@ public class AlertDialog extends Dialog {
 
     private onClickListener listener;
 
-    public AlertDialog(Context context) {
+    public AlertDialogView(Context context) {
         super(context, R.style.custom_dialog);
     }
 
@@ -102,10 +102,10 @@ public class AlertDialog extends Dialog {
 
                 if (listener != null) {
                     if (v.getId() == R.id.yes) {
-                        listener.confirmClick( AlertDialog.this);
+                        listener.confirmClick( AlertDialogView.this);
                     }
                     else {
-                        listener.cancelClick(AlertDialog.this);
+                        listener.cancelClick(AlertDialogView.this);
                     }
                     dismiss();
                 }
