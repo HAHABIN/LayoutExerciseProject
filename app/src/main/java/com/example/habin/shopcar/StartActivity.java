@@ -6,10 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.habin.shopcar.btnNav.BtnNavActivity;
 import com.example.habin.shopcar.cutleryRecycling.CutleryRecyclingActivity;
-import com.example.habin.shopcar.cutleryRecycling.SearchRecylingActivity;
 import com.example.habin.shopcar.salaryTest.SalaryActivity;
-import com.example.habin.shopcar.salaryTest.adapter.SalaryListAdapter;
 import com.example.habin.shopcar.shopCar.MainActivity;
 
 import butterknife.BindView;
@@ -51,6 +50,8 @@ public class StartActivity extends AppCompatActivity {
                 startActivity(new Intent(StartActivity.this, SalaryActivity.class));
                 break;
             case R.id.tv_test1:
+                startActivity(new Intent(StartActivity.this, BtnNavActivity.class));
+
                 break;
             case R.id.tv_test2:
                 break;

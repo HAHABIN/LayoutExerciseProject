@@ -87,7 +87,7 @@
                 android:layout_margin="10dp"
                 android:background="@drawable/bg_shape_386ffe"
                 android:padding="10dp"
-                android:text="测试"
+                android:text="底部导航"
                 android:textColor="@color/white" />
 
             <Button

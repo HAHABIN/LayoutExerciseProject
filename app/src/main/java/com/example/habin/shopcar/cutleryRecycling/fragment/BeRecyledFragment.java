@@ -17,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.habin.shopcar.BaseFragment;
 import com.example.habin.shopcar.R;
 import com.example.habin.shopcar.cutleryRecycling.view.SwipeView;
 import com.example.habin.shopcar.cutleryRecycling.adapter.BeRecyledAdapter;
@@ -32,7 +33,7 @@ import io.reactivex.disposables.Disposable;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class BeRecyledFragment extends Fragment implements BeRecyledAdapter.IitemCallback {
+public class BeRecyledFragment extends BaseFragment implements BeRecyledAdapter.IitemCallback {
 
     private static final int REQUEST_CODE_ASK_CALL_PHONE = 10100;
     private BeRecyledAdapter mAdapter;
@@ -48,26 +49,15 @@ public class BeRecyledFragment extends Fragment implements BeRecyledAdapter.Iite
     }
 
 
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        if (mView != null) {
-            ViewGroup parent = (ViewGroup) mView.getParent();
-            if (parent != null) {
-                parent.removeView(mView);
-            }
-            return mView;
-        }
-        mView = inflater.inflate(R.layout.fragment_be_recyled, container, false);
-
-
-        initView(mView);
-        return mView;
+    protected int getLayoutRes() {
+        return R.layout.fragment_be_recyled;
     }
 
 
-    private void initView(View view) {
+
+    protected void initView(View view) {
 
         mSwipeView = view.findViewById(R.id.swipeView);
         mAdapter = new BeRecyledAdapter(getContext(), this);
@@ -77,20 +67,26 @@ public class BeRecyledFragment extends Fragment implements BeRecyledAdapter.Iite
             @Override
             public void onRefresh() {
                 mPageNo = 1;
-                load();
+                initData();
             }
         });
         mSwipeView.setOnReLoadListener(new SwipeView.OnReLoadListener() {
             @Override
             public void onLoad() {
                 mPageNo++;
-                load();
+                initData();
             }
         });
         mSwipeView.startRefresh();
     }
 
-    private void load() {
+    @Override
+    protected void initListener() {
+
+    }
+
+    @Override
+    protected void initData() {
 
         HttpEngine.getDataList(mPageNo, mPageSize, "7", null, null, null, new Observer<RecycleOrderListEntity>() {
             @Override

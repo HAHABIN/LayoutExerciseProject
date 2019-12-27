@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bigkoo.pickerview.OptionsPickerView;
+import com.example.habin.shopcar.BaseFragment;
 import com.example.habin.shopcar.R;
 import com.example.habin.shopcar.cutleryRecycling.view.SwipeView;
 import com.example.habin.shopcar.cutleryRecycling.adapter.BeRecyledAdapter;
@@ -36,7 +37,7 @@ import io.reactivex.disposables.Disposable;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ToBeRecyledFragment extends Fragment implements View.OnClickListener, BeRecyledAdapter.IitemCallback {
+public class ToBeRecyledFragment extends BaseFragment implements View.OnClickListener, BeRecyledAdapter.IitemCallback {
 
 
     private static final String TAG = "ToBeRecyledFragment";
@@ -92,32 +93,14 @@ public class ToBeRecyledFragment extends Fragment implements View.OnClickListene
         }
     }
 
+
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-
-        Log.d(TAG, "onCreateView: "+getActivity());
-        if (mView != null) {
-            ViewGroup parent = (ViewGroup) mView.getParent();
-            if (parent != null) {
-                parent.removeView(mView);
-            }
-            return mView;
-        }
-        mView = inflater.inflate(R.layout.fragment_to_be_recyled, container, false);
-        initView(mView);
-        initEvent();
-
-        return mView;
+    protected int getLayoutRes() {
+        return R.layout.fragment_to_be_recyled;
     }
 
 
-    public void setName(String name) {
-        mDataList.get(4).setName(name);
-        mAdapter.notifyDataSetChanged();
-    }
-
-    private void initView(View view) {
+    protected void initView(View view) {
 
 
         mTvFirst = view.findViewById(R.id.tv_first_delivery);
@@ -133,14 +116,14 @@ public class ToBeRecyledFragment extends Fragment implements View.OnClickListene
             @Override
             public void onRefresh() {
                 mPageNo = 1;
-                load();
+                initData();
             }
         });
         mSwipeView.setOnReLoadListener(new SwipeView.OnReLoadListener() {
             @Override
             public void onLoad() {
                 mPageNo++;
-                load();
+                initData();
             }
         });
 
@@ -153,6 +136,13 @@ public class ToBeRecyledFragment extends Fragment implements View.OnClickListene
         BuildingListLoad();
         mSwipeView.startRefresh();
     }
+
+    @Override
+    protected void initListener() {
+
+    }
+
+
 
     private void initEvent() {
         mView.findViewById(R.id.choose_first).setOnClickListener(this);
@@ -193,7 +183,9 @@ public class ToBeRecyledFragment extends Fragment implements View.OnClickListene
         }
     }
 
-    private void load() {
+    @Override
+    protected void initData() {
+
 
         HttpEngine.getDataList(mPageNo, mPageSize, "8", null, mBuilding, mOrdersType, new Observer<RecycleOrderListEntity>() {
             @Override

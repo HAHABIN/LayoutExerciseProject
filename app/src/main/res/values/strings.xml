@@ -39,4 +39,8 @@
         <item>实发工资</item>
         <item>备注</item>
     </string-array>
+    <string name="title_activity_btn">BtnActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 </resources>

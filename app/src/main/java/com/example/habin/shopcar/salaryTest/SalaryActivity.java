@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.habin.shopcar.R;
 import com.example.habin.shopcar.cutleryRecycling.adapter.VpAdapter;
@@ -38,11 +39,9 @@ public class SalaryActivity extends AppCompatActivity implements TopNavRecyclerA
     RecyclerView rvTopnav;
     @BindView(R.id.tv_teacher_id)
     TextView mTvTeacherId;
-    @BindView(R.id.tv_dep_name)
-    TextView mvDepName;
-    @BindView(R.id.tv_range)
-    TextView mTvRange;
 
+
+    private List<String> mTitle;
     private VpAdapter mVpAdapter;
     private TopNavRecyclerAdapter mTopAdapter;
     private List<Fragment> mFragmentList;
@@ -61,26 +60,30 @@ public class SalaryActivity extends AppCompatActivity implements TopNavRecyclerA
 
     private void initView() {
         //RecyclerView顶部导航栏名称数组
-        String[] titles = getResources().getStringArray(R.array.salary_status);
+//        String[] titles = getResources().getStringArray(R.array.salary_status);
         //配置横向滚动
         rvTopnav.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         //顶部导航栏适配器
-        mTopAdapter = new TopNavRecyclerAdapter(getApplicationContext(), titles, SalaryActivity.this);
+        mTopAdapter = new TopNavRecyclerAdapter(getApplicationContext(), mTitle, SalaryActivity.this);
         //导航栏设置适配器
         rvTopnav.setAdapter(mTopAdapter);
 
         //ViewPager下的Fragment
         mFragmentList = new ArrayList<>();
-        mFragmentList.add(SalaryListFragment.newInstance(mDataList.get(0)));
-        mFragmentList.add(SalaryListFragment.newInstance(mDataList.get(1)));
-        mFragmentList.add(SalaryListFragment.newInstance(mDataList.get(2)));
-        mFragmentList.add(NoteFragment.newInstance(mDataList.get(3)));
+        for (int i = 0;i<mTitle.size();i++){
+            if (mTitle.get(i).equals("备注")){
+                mFragmentList.add(NoteFragment.newInstance(mDataList.get(i)));
+            }else {
+                mFragmentList.add(SalaryListFragment.newInstance(mDataList.get(i)));
+            }
+        }
+
         //ViewPager适配器 传入Fragment列表
-        mVpAdapter = new VpAdapter(getSupportFragmentManager(), mFragmentList, titles);
+        mVpAdapter = new VpAdapter(getSupportFragmentManager(), mFragmentList, mTitle);
         //ViewPager配置适配器
         mVpContent.setAdapter(mVpAdapter);
         //预加载
-        mVpContent.setOffscreenPageLimit(titles.length);
+        mVpContent.setOffscreenPageLimit(mTitle.size());
         //Viewpager滑动监听
         mVpContent.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -113,30 +116,14 @@ public class SalaryActivity extends AppCompatActivity implements TopNavRecyclerA
                 if (mResult != null) {
                     if (mDataList == null) {
                         mDataList = new ArrayList<>();
+                        mTitle = new ArrayList<>();
                     }
-                    recordDetailsEntity.RecordData infoList;
-                    for (int i = 0;i<mResult.getData().size();i++){
-                        infoList =  mResult.getData().get(i);
-                        int type = infoList.getId();
-                        switch (type){
-                            case 1:
-                                setInfo(infoList);
-                                break;
-                            case 2:
-                                mDataList.add(0,infoList);
-                                break;
-                            case 3:
-                                mDataList.add(1,infoList);
-                                break;
-                            case 4:
-                                mDataList.add(2,infoList);
-                                break;
-                            case 5:
-                                mDataList.add(3,infoList);
-                                break;
-                        }
+                    mDataList = mResult.getData();
+                    for (int i = 0; i < mDataList.size(); i++) {
+                        //获得导航栏名
+                        String title = mDataList.get(i).getFieldTypeName();
+                        mTitle.add(title);
                     }
-
                     initView();
 
                 }
@@ -144,7 +131,7 @@ public class SalaryActivity extends AppCompatActivity implements TopNavRecyclerA
 
             @Override
             public void onError(Throwable e) {
-
+                Toast.makeText(SalaryActivity.this, "获取信息失败", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -159,8 +146,7 @@ public class SalaryActivity extends AppCompatActivity implements TopNavRecyclerA
         List<recordDetailsEntity.RecordData.salaryRecordInfoEditVO> data = infoList.getSalaryRecordInfoEditVOList();
         mTvTeacherId.setText(data.get(0).getFieldValue());
         mTvInfo.setText(data.get(2).getFieldValue());
-        mvDepName.setText(data.get(1).getFieldValue());
-        mTvRange.setText(data.get(3).getFieldValue());
+
     }
 
     @Override

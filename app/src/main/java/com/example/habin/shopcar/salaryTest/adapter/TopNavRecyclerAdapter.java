@@ -18,18 +18,18 @@ import java.util.List;
 public class TopNavRecyclerAdapter extends RecyclerView.Adapter<TopNavRecyclerAdapter.ViewHolder> {
 
     private Context mContext;
-    private String[] mTitles;
+    private List<String> mTitles;
     private List<Boolean> isClicks;//控件是否被点击,默认为false，如果被点击，改变值，控件根据值改变自身颜色
     private OnItemClickListener mOnItemClickListener = null;
 
 
 
-    public TopNavRecyclerAdapter(Context context, String[] titles,OnItemClickListener mOnItemClickListener) {
+    public TopNavRecyclerAdapter(Context context, List<String> titles,OnItemClickListener mOnItemClickListener) {
         this.mContext = context;
         this.mTitles = titles;
         this.mOnItemClickListener = mOnItemClickListener;
         isClicks = new ArrayList<>();
-        for (int i = 0; i < mTitles.length; i++) {
+        for (int i = 0; i < mTitles.size(); i++) {
             if (i == 0) {
                 //默认第一个状态为点击
                 isClicks.add(true);
@@ -61,7 +61,7 @@ public class TopNavRecyclerAdapter extends RecyclerView.Adapter<TopNavRecyclerAd
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int postion) {
-        String title = mTitles[postion];
+        String title = mTitles.get(postion);
         //默认第一个状态字体大小 颜色  下划线是否显示
         if (isClicks.get(postion).equals(true)) {
             holder.mTvTitle.setTextColor(Color.parseColor("#386FFE"));
@@ -88,7 +88,7 @@ public class TopNavRecyclerAdapter extends RecyclerView.Adapter<TopNavRecyclerAd
 
     @Override
     public int getItemCount() {
-        return mTitles.length;
+        return mTitles == null ? 0 : mTitles.size();
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {

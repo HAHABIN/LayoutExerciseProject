@@ -13,21 +13,14 @@ import java.util.List;
 public class VpAdapter extends FragmentStatePagerAdapter {
 
     private List<Fragment> mFragmentList;
-    private String[] mTitleList;
-    private List<recordDetailsEntity.RecordData> mDataList;
+    private List<String> mTitleList;
 
-    public VpAdapter(FragmentManager fm, List<Fragment> mFragmentList, String[] mTitleList) {
+    public VpAdapter(FragmentManager fm, List<Fragment> mFragmentList, List<String> mTitleList) {
         super(fm);
         this.mFragmentList = mFragmentList;
         this.mTitleList = mTitleList;
     }
-    public void setData(List<recordDetailsEntity.RecordData> dataList){
-        if (dataList!=null){
-            mDataList = dataList;
-            notifyDataSetChanged();
-        }
 
-    }
     @Override
     public Fragment getItem(int position) {
         return mFragmentList.get(position);
@@ -41,6 +34,6 @@ public class VpAdapter extends FragmentStatePagerAdapter {
     @Nullable
     @Override
     public CharSequence getPageTitle(int position) {
-        return mTitleList[position];
+        return mTitleList.get(position);
     }
 }

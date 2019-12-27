@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.habin.shopcar.BaseFragment;
 import com.example.habin.shopcar.R;
 import com.example.habin.shopcar.cutleryRecycling.view.SwipeView;
 import com.example.habin.shopcar.cutleryRecycling.adapter.BeRecyledAdapter;
@@ -21,7 +22,7 @@ import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 
 
-public class MyRecyleFragment extends Fragment implements BeRecyledAdapter.IitemCallback {
+public class MyRecyleFragment extends BaseFragment implements BeRecyledAdapter.IitemCallback {
 
 
     private TextView mTvDailyNum;
@@ -39,23 +40,14 @@ public class MyRecyleFragment extends Fragment implements BeRecyledAdapter.Iitem
     private int mPageSize = 10;
     private List<RecycleOrderListEntity.ItemBean> mDataList;
 
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        if (mView != null) {
-            ViewGroup parent = (ViewGroup) mView.getParent();
-            if (parent != null) {
-                parent.removeView(mView);
-            }
-            return mView;
-        }
-        mView = inflater.inflate(R.layout.fragment_my_recyle, container, false);
-        initView(mView);
-        return mView;
+    protected int getLayoutRes() {
+        return R.layout.fragment_my_recyle;
     }
 
 
-    private void initView(View view) {
+    protected void initView(View view) {
         mTvDailyNum = view.findViewById(R.id.tv_daily_order_num);
         mTvMonNum = view.findViewById(R.id.tv_month_order_num);
         mTvHisNum = view.findViewById(R.id.tv_history_order_num);
@@ -68,20 +60,26 @@ public class MyRecyleFragment extends Fragment implements BeRecyledAdapter.Iitem
             @Override
             public void onRefresh() {
                 mPageNo = 1;
-                load();
+                initData();
             }
         });
         mSwipeView.setOnReLoadListener(new SwipeView.OnReLoadListener() {
             @Override
             public void onLoad() {
                 mPageNo++;
-                load();
+                initData();
             }
         });
         mSwipeView.startRefresh();
     }
 
-    private void load() {
+    @Override
+    protected void initListener() {
+
+    }
+
+    @Override
+    protected void initData() {
 
         HttpEngine.getDataList(mPageNo, mPageSize, "9", null, null, null, new Observer<RecycleOrderListEntity>() {
             @Override

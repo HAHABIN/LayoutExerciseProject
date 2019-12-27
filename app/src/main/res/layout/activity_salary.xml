@@ -6,27 +6,29 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".salaryTest.SalaryActivity">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="@color/white_f5"
-        >
+        android:background="@color/white_f5">
+
         <ImageView
             android:id="@+id/iv_back"
             android:layout_width="wrap_content"
             android:layout_height="18dp"
-            android:src="@drawable/ic_back"
             android:layout_centerVertical="true"
+            android:layout_marginStart="5dp"
             android:layout_marginLeft="5dp"
-            android:layout_marginStart="5dp" />
+            android:src="@drawable/ic_back" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="工资详情"
             android:layout_gravity="center"
-            android:textSize="18sp"
-            android:textColor="@color/black_26"/>
+            android:text="工资详情"
+            android:textColor="@color/black_26"
+            android:textSize="18sp" />
     </RelativeLayout>
 
     <android.support.design.widget.CoordinatorLayout
@@ -48,7 +50,7 @@
                 <RelativeLayout
                     android:id="@+id/rl_header"
                     android:layout_width="match_parent"
-                    android:layout_height="220dp"
+                    android:layout_height="110dp"
                     android:background="@color/white_f5"
                     app:layout_collapseMode="parallax">
 
@@ -58,134 +60,70 @@
                         android:background="@drawable/salary_toolbar" />
 
                     <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
-                        <TextView
-                            android:id="@+id/tv_test"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="25dp"
-                            android:layout_marginTop="38dp"
-                            android:text="基本信息"
-                            android:textColor="@color/white"
-                            android:textSize="18sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/tv_test"
-                            android:layout_marginLeft="25dp"
-                            android:layout_marginTop="6dp"
-                            android:text="职工姓名:"
-                            android:textColor="@color/white80"
-                            android:textSize="14sp" />
-
-                        <TextView
-                            android:id="@+id/tv_info"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="94dp"
-                            android:layout_marginTop="67dp"
-                            android:text="赵大人"
-                            android:textColor="@color/white"
-                            android:textSize="16dp" />
+                        <com.example.habin.shopcar.salaryTest.view.CircleImageView
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginLeft="35dp"
+                            android:src="@drawable/ttt" />
 
                         <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginTop="114dp"
-                            android:layout_marginBottom="10dp"
+                            android:id="@+id/ll_test"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="120dp"
+                            android:layout_marginTop="30dp"
                             android:orientation="horizontal">
 
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1">
+                            <TextView
+                                android:id="@+id/tv_test"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
 
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="25dp"
-                                    android:layout_marginTop="20dp"
-                                    android:text="教师编号"
-                                    android:textColor="@color/white80"
-                                    android:textSize="12sp" />
+                                android:text="基本姓名:"
+                                android:textColor="@color/white"
+                                android:textSize="14sp" />
 
-                                <TextView
-                                    android:id="@+id/tv_teacher_id"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="25dp"
-                                    android:layout_marginTop="45dp"
-                                    android:text="001"
-                                    android:textColor="@color/white"
-                                    android:textSize="16sp" />
-                            </RelativeLayout>
-
-                            <View
-                                android:layout_width="1dp"
-                                android:layout_height="50dp"
-                                android:layout_gravity="center"
-                                android:background="@color/white16" />
-
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="25dp"
-                                    android:layout_marginTop="20dp"
-                                    android:text="部门名称"
-                                    android:textColor="@color/white80"
-                                    android:textSize="12sp" />
-
-                                <TextView
-                                    android:id="@+id/tv_dep_name"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="25dp"
-                                    android:layout_marginTop="45dp"
-                                    android:text="001"
-                                    android:textColor="@color/white"
-                                    android:textSize="16sp" />
-                            </RelativeLayout>
-
-                            <View
-                                android:layout_width="1dp"
-                                android:layout_height="50dp"
-                                android:layout_gravity="center"
-                                android:background="@color/white16" />
-
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="25dp"
-                                    android:layout_marginTop="20dp"
-                                    android:text="适用技术职务…"
-                                    android:textColor="@color/white80"
-                                    android:textSize="12sp" />
-
-                                <TextView
-                                    android:id="@+id/tv_range"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="25dp"
-                                    android:layout_marginTop="45dp"
-                                    android:text="001"
-                                    android:textColor="@color/white"
-                                    android:textSize="16sp" />
-                            </RelativeLayout>
-
+                            <TextView
+                                android:id="@+id/tv_info"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="赵大人"
+                                android:textColor="@color/white"
+                                android:textSize="14sp" />
                         </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginLeft="120dp"
+                        android:layout_marginTop="50dp"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginTop="5dp"
+                            android:text="教师编号:"
+                            android:textColor="@color/white80"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/tv_teacher_id"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginLeft="5dp"
+                            android:text="001"
+                            android:textColor="@color/white80"
+                            android:textSize="12sp" />
+                    </LinearLayout>
                     </RelativeLayout>
                 </RelativeLayout>
 

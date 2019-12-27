@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.habin.shopcar.R;
-import com.example.habin.shopcar.salaryTest.Entity.itemEntity;
 import com.example.habin.shopcar.salaryTest.Entity.recordDetailsEntity;
 
 import java.util.List;

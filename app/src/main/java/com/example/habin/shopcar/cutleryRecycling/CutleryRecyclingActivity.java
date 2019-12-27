@@ -47,7 +47,11 @@ public class CutleryRecyclingActivity extends AppCompatActivity {
         mVpContent = findViewById(R.id.vp_content);
         mIvBack = findViewById(R.id.iv_back);
         mIvSearch = findViewById(R.id.iv_search);
-        String[] titles = getResources().getStringArray(R.array.tableware_recycle_status);
+        List<String> titles = new ArrayList<>();
+        String[] titlelist = getResources().getStringArray(R.array.tableware_recycle_status);
+        for (String t :titlelist){
+            titles.add(t);
+        }
         for (String tab : titles) {
             mTlTabs.addTab(mTlTabs.newTab().setText(tab));
         }
@@ -56,10 +60,10 @@ public class CutleryRecyclingActivity extends AppCompatActivity {
         mFragmentList.add(BeRecyledFragment.newInstance());//已回收7
         mFragmentList.add(MyRecyleFragment.newInstance());//我回收的9
 
-        mVpAdapter = new VpAdapter(getSupportFragmentManager(), mFragmentList, titles);
+        mVpAdapter = new VpAdapter(getSupportFragmentManager(), mFragmentList,titles);
         mVpContent.setAdapter(mVpAdapter);
         //预加载
-        mVpContent.setOffscreenPageLimit(titles.length);
+        mVpContent.setOffscreenPageLimit(titles.size());
         mTlTabs.setupWithViewPager(mVpContent);
     }
 
