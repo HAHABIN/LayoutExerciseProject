@@ -3,13 +3,10 @@ package com.example.habin.shopcar.cutleryRecycling.fragment;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,11 +14,11 @@ import android.widget.Toast;
 import com.bigkoo.pickerview.OptionsPickerView;
 import com.example.habin.shopcar.BaseFragment;
 import com.example.habin.shopcar.R;
-import com.example.habin.shopcar.cutleryRecycling.view.SwipeView;
 import com.example.habin.shopcar.cutleryRecycling.adapter.BeRecyledAdapter;
 import com.example.habin.shopcar.cutleryRecycling.bean.RecycleOrderListEntity;
 import com.example.habin.shopcar.cutleryRecycling.http.HttpEngine;
 import com.example.habin.shopcar.cutleryRecycling.view.AlertDialogView;
+import com.example.habin.shopcar.cutleryRecycling.view.SwipeView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,6 +27,9 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import butterknife.Unbinder;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 
@@ -37,10 +37,11 @@ import io.reactivex.disposables.Disposable;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ToBeRecyledFragment extends BaseFragment implements View.OnClickListener, BeRecyledAdapter.IitemCallback {
+public class ToBeRecyledFragment extends BaseFragment implements BeRecyledAdapter.IitemCallback {
 
 
     private static final String TAG = "ToBeRecyledFragment";
+    Unbinder unbinder;
 
     public static ToBeRecyledFragment newInstance() {
 
@@ -50,7 +51,7 @@ public class ToBeRecyledFragment extends BaseFragment implements View.OnClickLis
     public static ToBeRecyledFragment newInstance(String data) {
         ToBeRecyledFragment fragment = new ToBeRecyledFragment();
         Bundle bundle = new Bundle();
-        bundle.putString("data",data);
+        bundle.putString("data", data);
         fragment.setArguments(bundle);
 
         return fragment;
@@ -75,21 +76,19 @@ public class ToBeRecyledFragment extends BaseFragment implements View.OnClickLis
     private String mOrdersType = "";//选择筛选排序 时间time,地址building
     private String mBuilding = "";
     private int mChecked = 1; //1 默认为最先配送选中  2为回收区域
-        private View mView;
+    private View mView;
     private List<RecycleOrderListEntity.ItemBean> mDataList;
-
-
 
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        Log.d(TAG, "onActivityCreated: "+getActivity());
+        Log.d(TAG, "onActivityCreated: " + getActivity());
         String url = null;
-        if (url!=null){
+        if (url != null) {
             Bundle arguments = this.getArguments();
             String name = arguments.getString("data");
-            Toast.makeText(getActivity(),name, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), name, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -143,12 +142,6 @@ public class ToBeRecyledFragment extends BaseFragment implements View.OnClickLis
     }
 
 
-
-    private void initEvent() {
-        mView.findViewById(R.id.choose_first).setOnClickListener(this);
-        mView.findViewById(R.id.choose_area).setOnClickListener(this);
-    }
-
     //1 为最先配送选中  2为回收区域
     public void ChooesFirstOrArea() {
         if (mChecked == 1) {
@@ -164,24 +157,6 @@ public class ToBeRecyledFragment extends BaseFragment implements View.OnClickLis
         }
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.choose_first:
-                mChecked = 1;
-                ChooesFirstOrArea();
-                ShowBankName(mTimeList,mChecked);
-                break;
-            case R.id.choose_area:
-                mChecked = 2;
-                if (mBuildList!=null){
-                    ShowBankName(mBuildList,mChecked);
-                    ChooesFirstOrArea();
-                }
-
-                break;
-        }
-    }
 
     @Override
     protected void initData() {
@@ -339,11 +314,11 @@ public class ToBeRecyledFragment extends BaseFragment implements View.OnClickLis
             @Override
             public void onOptionsSelect(int options1, int options2, int options3, View v) {
 
-                if (dList!=null&&!dList.isEmpty()){
+                if (dList != null && !dList.isEmpty()) {
                     String strBankName = dList.get(options1);
-                    if (Checked==1){
+                    if (Checked == 1) {
                         mTvFirst.setText(strBankName);//将选中的数据返回设置在TextView 上。
-                        switch (strBankName){
+                        switch (strBankName) {
                             case "时间排序":
                                 mOrdersType = "time";
                                 break;
@@ -352,7 +327,7 @@ public class ToBeRecyledFragment extends BaseFragment implements View.OnClickLis
                                 break;
                         }
                     } else {
-                        if (!strBankName.equals("全部")){
+                        if (!strBankName.equals("全部")) {
                             mBuilding = strBankName;
                         } else {
                             mBuilding = "";
@@ -379,45 +354,24 @@ public class ToBeRecyledFragment extends BaseFragment implements View.OnClickLis
         pvOptions.show();
     }
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        Log.d(TAG, "onCreate: "+getActivity());
-    }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        Log.d(TAG, "onStart: "+getActivity());
-    }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        Log.d(TAG, "onResume: "+getActivity());
-    }
+    @OnClick({R.id.choose_first, R.id.choose_area})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.choose_first:
+                mChecked = 1;
+                ChooesFirstOrArea();
+                ShowBankName(mTimeList, mChecked);
+                break;
+            case R.id.choose_area:
+                mChecked = 2;
+                if (mBuildList != null) {
+                    ShowBankName(mBuildList, mChecked);
+                    ChooesFirstOrArea();
+                }
 
-    @Override
-    public void onPause() {
-        super.onPause();
-        Log.d(TAG, "onPause: "+getActivity());
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        Log.d(TAG, "onStop: "+getActivity());
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        Log.d(TAG, "onDestroyView: "+getActivity());
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        Log.d(TAG, "onDestroy: "+getActivity());
+                break;
+        }
     }
 }

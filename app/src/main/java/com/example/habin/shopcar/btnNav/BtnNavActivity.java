@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.habin.shopcar.BaseActivity;
 import com.example.habin.shopcar.R;
@@ -14,6 +15,7 @@ import com.example.habin.shopcar.btnNav.fragment.HomePageFragment;
 import com.example.habin.shopcar.btnNav.fragment.MessagePageFragment;
 import com.example.habin.shopcar.btnNav.fragment.MinePageFragment;
 import com.example.habin.shopcar.btnNav.fragment.TypePageFragment;
+import com.example.habin.shopcar.btnNav.view.PublishDialog;
 import com.example.habin.shopcar.cutleryRecycling.fragment.BeRecyledFragment;
 import com.example.habin.shopcar.cutleryRecycling.fragment.MyRecyleFragment;
 import com.example.habin.shopcar.cutleryRecycling.fragment.ToBeRecyledFragment;
@@ -56,8 +58,8 @@ public class BtnNavActivity extends BaseActivity {
     private int[] noseIds = {R.mipmap.ic_home_selected,R.mipmap.ic_type_selected,R.mipmap.ic_message_selected,R.mipmap.ic_mine_select};
     //当前fragment
     private Fragment fragment;
-
-
+    //发布动画
+    private PublishDialog publishDialog;
     @Override
     protected int getLayout() {
         return R.layout.activity_btn_nav;
@@ -80,6 +82,30 @@ public class BtnNavActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.btn_add:
+                if (publishDialog==null){
+                    publishDialog=new PublishDialog(BtnNavActivity.this);
+                    publishDialog.setFabuClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Toast.makeText(BtnNavActivity.this, "发布", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    publishDialog.setHuishouClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Toast.makeText(BtnNavActivity.this, "回收", Toast.LENGTH_SHORT).show();
+
+                        }
+                    });
+                    publishDialog.setPingguClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Toast.makeText(BtnNavActivity.this, "评估", Toast.LENGTH_SHORT).show();
+
+                        }
+                    });
+                }
+                publishDialog.show();
                 break;
             case R.id.rl_home:
                 mIsCheck = 0;

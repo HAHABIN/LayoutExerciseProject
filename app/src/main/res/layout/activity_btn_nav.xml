@@ -11,7 +11,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="@color/white_f5">
+        android:background="@color/blue_386FFE">
 
         <ImageView
             android:id="@+id/iv_back"
@@ -28,7 +28,7 @@
             android:layout_centerInParent="true"
             android:layout_gravity="center"
             android:text="闲鱼底部导航"
-            android:textColor="@color/black_26"
+            android:textColor="@color/white_f5"
             android:textSize="18sp" />
     </RelativeLayout>
 
