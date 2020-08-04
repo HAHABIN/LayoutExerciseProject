@@ -99,7 +99,7 @@
                 android:layout_toRightOf="@+id/tv_shop_car"
                 android:background="@drawable/bg_shape_386ffe"
                 android:padding="10dp"
-                android:text="测试"
+                android:text="手写签名"
                 android:textColor="@color/white" />
 
             <Button
@@ -111,7 +111,7 @@
                 android:layout_toRightOf="@+id/tv_cutlery"
                 android:background="@drawable/bg_shape_386ffe"
                 android:padding="10dp"
-                android:text="测试"
+                android:text="自定义View"
                 android:textColor="@color/white" />
         </LinearLayout>
         <View

@@ -32,6 +32,7 @@ public class NoteFragment extends Fragment {
     }
 
     private View mView;
+
     private recordDetailsEntity.RecordData mData;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

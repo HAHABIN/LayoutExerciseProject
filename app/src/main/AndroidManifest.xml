@@ -14,6 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".viewdemo.ViewDemoActivity"></activity>
+        <activity android:name=".signature.SignatureActivity" />
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,10 +23,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".btnNav.BtnNavActivity"></activity>
-        <activity android:name=".StartActivity">
-
-        </activity>
+        <activity android:name=".btnNav.BtnNavActivity" />
+        <activity android:name=".StartActivity" />
         <activity android:name=".salaryTest.SalaryActivity" />
         <activity android:name=".shopCar.MainActivity" />
         <activity android:name=".cutleryRecycling.CutleryRecyclingActivity" />

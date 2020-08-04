@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".viewdemo.ViewDemoActivity">
+
+
+    <com.example.habin.shopcar.viewdemo.view.TextView
+        android:id="@+id/tv_context"
+        app:DemoText="sddds "
+        app:DemoTextSize="20sp"
+        app:DemoTextColor="@color/gray_333"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/blue_4b98e8"
+        />
+    <com.example.habin.shopcar.viewdemo.view.StepView
+        android:id="@+id/sv_step"
+        app:InnerColor="@color/blue_4979F5"
+        app:OuterColor="@color/colorAccent"
+        app:StepTextColor="@color/yellow_F3992C"
+        app:StrokeWidth="12dp"
+        app:StepTextSize="16sp"
+        android:layout_below="@+id/tv_context"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <com.example.habin.shopcar.viewdemo.view.ColorTrackTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="变色"
+        app:ChangeTextColor="@color/colorAccent"
+        app:DynamicTextColor="@color/colorPrimaryDark"
+        />
+
+</LinearLayout>
