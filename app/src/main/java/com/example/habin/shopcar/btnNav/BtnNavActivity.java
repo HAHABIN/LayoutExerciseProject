@@ -1,5 +1,6 @@
 package com.example.habin.shopcar.btnNav;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -19,6 +20,7 @@ import com.example.habin.shopcar.btnNav.view.PublishDialog;
 import com.example.habin.shopcar.cutleryRecycling.fragment.BeRecyledFragment;
 import com.example.habin.shopcar.cutleryRecycling.fragment.MyRecyleFragment;
 import com.example.habin.shopcar.cutleryRecycling.fragment.ToBeRecyledFragment;
+import com.example.habin.shopcar.viewdemo.ScrollingActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -88,6 +90,8 @@ public class BtnNavActivity extends BaseActivity {
                         @Override
                         public void onClick(View v) {
                             Toast.makeText(BtnNavActivity.this, "发布", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(BtnNavActivity.this, ScrollingActivity.class);
+                            startActivity(intent);
                         }
                     });
                     publishDialog.setHuishouClickListener(new View.OnClickListener() {

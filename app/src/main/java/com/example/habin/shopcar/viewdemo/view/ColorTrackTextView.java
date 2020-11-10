@@ -42,12 +42,19 @@ public class ColorTrackTextView extends android.support.v7.widget.AppCompatTextV
     private int mTextChangeColor = Color.RED;
 
     //当前进度
-    private float mCurrentProgress = 0.5f;
+    private float mCurrentProgress = 0.0f;
 
     private Paint mDynamicPaint;
-
+    /** 焦点位置颜色*/
     private Paint mChangePaint;
 
+    /** 实现不同朝向*/
+    private Direction mDirection = Direction.LEFT_TO_RIGHT;
+
+    public enum Direction{
+        LEFT_TO_RIGHT,
+        RIGHT_TO_LEFT
+    }
     public ColorTrackTextView(Context context) {
         this(context,null);
     }
@@ -96,10 +103,18 @@ public class ColorTrackTextView extends android.support.v7.widget.AppCompatTextV
         //根据进度将中间值算出来
         int middle = (int) (mCurrentProgress*getWidth());
 
-        /** 绘制前半段 -------------------------*/
-        drawText(canvas,mDynamicPaint,0,middle);
-        /** 绘制后半段*/
-        drawText(canvas,mChangePaint,middle,getWidth());
+        if (mDirection  == Direction.LEFT_TO_RIGHT){
+            /** 绘制前半段 -------------------------*/
+            drawText(canvas,mChangePaint,0,middle);
+            /** 绘制后半段*/
+            drawText(canvas,mDynamicPaint,middle,getWidth());
+        } else {
+            /** 绘制前半段 -------------------------*/
+            drawText(canvas,mChangePaint,0,getWidth()-middle);
+            /** 绘制后半段*/
+            drawText(canvas,mDynamicPaint,getWidth()-middle,getWidth());
+        }
+
     }
 
     /**
@@ -126,5 +141,14 @@ public class ColorTrackTextView extends android.support.v7.widget.AppCompatTextV
         canvas.drawText(text,x,baseLine,paint);
         //释放
         canvas.restore();
+    }
+
+    public void setDirection(Direction direction){
+        this.mDirection = direction;
+    }
+
+    public void setCurrentProgress(float currentProgress) {
+        this.mCurrentProgress = currentProgress;
+        invalidate();
     }
 }

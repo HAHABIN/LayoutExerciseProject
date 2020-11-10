@@ -15,7 +15,7 @@ import com.example.habin.shopcar.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TopNavRecyclerAdapter extends RecyclerView.Adapter<TopNavRecyclerAdapter.ViewHolder> {
+public class    TopNavRecyclerAdapter extends RecyclerView.Adapter<TopNavRecyclerAdapter.ViewHolder> {
 
     private Context mContext;
     private List<String> mTitles;
@@ -36,7 +36,6 @@ public class TopNavRecyclerAdapter extends RecyclerView.Adapter<TopNavRecyclerAd
             } else {
                 isClicks.add(false);
             }
-
         }
     }
     //修改状态

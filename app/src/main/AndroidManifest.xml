@@ -14,7 +14,25 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".viewdemo.ViewDemoActivity"></activity>
+        <activity android:name=".viewdemo.MaterialDemoActivity"></activity>
+        <activity
+            android:name=".viewdemo.ScrollingActivity"
+            android:label="@string/title_activity_scrolling"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".viewdemo.dummy.ItemListActivity"
+            android:label="@string/title_item_list"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".viewdemo.dummy.ItemDetailActivity"
+            android:label="@string/title_item_detail"
+            android:parentActivityName=".viewdemo.dummy.ItemListActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.habin.shopcar.viewdemo.dummy.ItemListActivity" />
+        </activity>
+        <activity android:name=".viewdemo.ViewDemoActivity" />
         <activity android:name=".signature.SignatureActivity" />
         <activity android:name=".SplashActivity">
             <intent-filter>
