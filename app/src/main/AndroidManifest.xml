@@ -14,11 +14,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".viewdemo.MaterialDemoActivity"></activity>
+        <activity android:name=".viewdemo.Test2ViewActivity"></activity>
+        <activity android:name=".viewdemo.SelectViewActivity" />
         <activity
             android:name=".viewdemo.ScrollingActivity"
             android:label="@string/title_activity_scrolling"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".viewdemo.dummy.ItemListActivity"
             android:label="@string/title_item_list"

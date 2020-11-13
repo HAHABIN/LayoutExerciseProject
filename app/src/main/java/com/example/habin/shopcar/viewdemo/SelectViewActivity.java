@@ -1,26 +1,21 @@
-package com.example.habin.shopcar;
+package com.example.habin.shopcar.viewdemo;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.habin.shopcar.R;
 import com.example.habin.shopcar.btnNav.BtnNavActivity;
-import com.example.habin.shopcar.cutleryRecycling.CutleryRecyclingActivity;
 import com.example.habin.shopcar.salaryTest.SalaryActivity;
-import com.example.habin.shopcar.shopCar.MainActivity;
 import com.example.habin.shopcar.signature.SignatureActivity;
-import com.example.habin.shopcar.utils.WaterMark;
-import com.example.habin.shopcar.viewdemo.SelectViewActivity;
-import com.example.habin.shopcar.viewdemo.ViewDemoActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class StartActivity extends AppCompatActivity {
-
+public class SelectViewActivity extends AppCompatActivity {
     @BindView(R.id.tv_shop_car)
     Button tvShopCar;
     @BindView(R.id.tv_cutlery)
@@ -37,31 +32,29 @@ public class StartActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_start);
+        setContentView(R.layout.activity_select_view);
         ButterKnife.bind(this);
-        WaterMark.getInstance().show(this, "曹操曹操曹操");
     }
 
     @OnClick({R.id.tv_shop_car, R.id.tv_cutlery, R.id.tv_salary, R.id.tv_test1, R.id.tv_test2, R.id.tv_test3})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_shop_car:
-                startActivity(new Intent(StartActivity.this, MainActivity.class));
+                startActivity(new Intent(SelectViewActivity.this, ViewDemoActivity.class));
                 break;
             case R.id.tv_cutlery:
-                startActivity(new Intent(StartActivity.this, CutleryRecyclingActivity.class));
+                startActivity(new Intent(SelectViewActivity.this, Test2ViewActivity.class));
                 break;
             case R.id.tv_salary:
-                startActivity(new Intent(StartActivity.this, SalaryActivity.class));
+                startActivity(new Intent(SelectViewActivity.this, SalaryActivity.class));
                 break;
             case R.id.tv_test1:
-                startActivity(new Intent(StartActivity.this, BtnNavActivity.class));
+                startActivity(new Intent(SelectViewActivity.this, BtnNavActivity.class));
                 break;
             case R.id.tv_test2:
-                startActivity(new Intent(StartActivity.this, SignatureActivity.class));
+                startActivity(new Intent(SelectViewActivity.this, SignatureActivity.class));
                 break;
             case R.id.tv_test3:
-                startActivity(new Intent(StartActivity.this, SelectViewActivity.class));
                 break;
         }
     }

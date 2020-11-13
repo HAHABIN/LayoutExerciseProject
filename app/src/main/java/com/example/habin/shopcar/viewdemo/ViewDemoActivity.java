@@ -38,12 +38,9 @@ public class ViewDemoActivity extends BaseActivity {
         valueAnimator.setDuration(1000);
         /** 插值器 速度设置器*/
         valueAnimator.setInterpolator(new AccelerateDecelerateInterpolator());
-        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                float animatedValue = (float) animation.getAnimatedValue();
-                mSvStep.setCurrentStep((int) animatedValue);
-            }
+        valueAnimator.addUpdateListener(animation -> {
+            float animatedValue = (float) animation.getAnimatedValue();
+            mSvStep.setCurrentStep((int) animatedValue);
         });
         valueAnimator.start();
     }
@@ -79,10 +76,5 @@ public class ViewDemoActivity extends BaseActivity {
         }
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
+
 }

@@ -11,6 +11,7 @@
 package com.example.habin.shopcar.utils;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.util.TypedValue;
 
 import com.example.habin.shopcar.MyApplication;
@@ -34,5 +35,8 @@ public class CommonUtils {
     public static int spToPx(int sp) {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP,sp
                 ,getContext().getResources().getDisplayMetrics());
+    }
+    public static float dp2px(float dp) {
+        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,dp, Resources.getSystem().getDisplayMetrics());
     }
 }

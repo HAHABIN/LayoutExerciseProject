@@ -50,17 +50,11 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxjava:2.x.y'
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'//转换器，请求结果转换成Model
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'//配合Rxjava 使用
-
-
     implementation 'com.android.support:recyclerview-v7:28.0.0-alpha1'
-
-
     //PickerView
     implementation 'com.contrarywind:Android-PickerView:3.2.5'
-
     //导航栏
     implementation 'com.kcrason:dynamicpagerindicator:1.0.6'
-
     //权限申请
     implementation 'pub.devrel:easypermissions:1.0.1'
 }

@@ -5,11 +5,11 @@ import android.os.Bundle;
 
 import com.example.habin.shopcar.R;
 
-public class MaterialDemoActivity extends AppCompatActivity {
+public class Test2ViewActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_material_demo);
+        setContentView(R.layout.activity_test2_view);
     }
 }

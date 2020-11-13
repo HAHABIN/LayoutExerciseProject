@@ -58,5 +58,8 @@
         android:text="从右到左"
         android:onClick="onViewClicked"
         />
+    <com.example.habin.shopcar.viewdemo.view.TestView
+        android:layout_width="300dp"
+        android:layout_height="300dp"/>
 
 </LinearLayout>
