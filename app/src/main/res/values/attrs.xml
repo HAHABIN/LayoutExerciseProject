@@ -41,4 +41,10 @@
         <!--改变颜色 高亮颜色-->
         <attr name="ChangeTextColor" format="color"/>
     </declare-styleable>
+
+    <declare-styleable name="RatingStarsView">
+        <attr name="normalStar" format="reference"/>
+        <attr name="selectedStar" format="reference"/>
+        <attr name="starCount" format="integer"/>
+    </declare-styleable>
 </resources>

@@ -1,65 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+
     tools:context=".viewdemo.ViewDemoActivity">
 
-
-    <com.example.habin.shopcar.viewdemo.view.TextView
-        android:id="@+id/tv_context"
-        app:DemoText="sddds "
-        app:DemoTextSize="20sp"
-        app:DemoTextColor="@color/gray_333"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/blue_4b98e8"
-        />
-    <com.example.habin.shopcar.viewdemo.view.StepView
-        android:id="@+id/sv_step"
-        app:InnerColor="@color/blue_4979F5"
-        app:OuterColor="@color/colorAccent"
-        app:StepTextColor="@color/yellow_F3992C"
-        app:StrokeWidth="12dp"
-        app:StepTextSize="16sp"
-        android:layout_below="@+id/tv_context"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
     <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:orientation="horizontal"
-        >
-        <com.example.habin.shopcar.viewdemo.view.ColorTrackTextView
-            android:id="@+id/ctcv_text"
+        android:layout_height="match_parent">
+
+        <com.example.habin.shopcar.viewdemo.view.TextView
+            android:id="@+id/tv_context"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="变色"
-            app:ChangeTextColor="@color/colorAccent"
-            app:DynamicTextColor="@color/colorPrimaryDark"
-            />
+            android:layout_height="40dp"
+            android:background="@color/blue_4b98e8"
+            app:DemoText="sddds "
+            app:DemoTextColor="@color/gray_333"
+            app:DemoTextSize="20sp" />
 
+        <com.example.habin.shopcar.viewdemo.view.StepView
+            android:id="@+id/sv_step"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_below="@+id/tv_context"
+            app:InnerColor="@color/blue_4979F5"
+            app:OuterColor="@color/colorAccent"
+            app:StepTextColor="@color/yellow_F3992C"
+            app:StepTextSize="16sp"
+            app:StrokeWidth="12dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal">
+
+            <com.example.habin.shopcar.viewdemo.view.ColorTrackTextView
+                android:id="@+id/ctcv_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="变色"
+                app:ChangeTextColor="@color/colorAccent"
+                app:DynamicTextColor="@color/colorPrimaryDark" />
+
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/bt_left_to_right"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:onClick="onViewClicked"
+            android:text="从左到右" />
+
+        <Button
+            android:id="@+id/bt_right_to_left"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:onClick="onViewClicked"
+            android:text="从右到左" />
+
+        <com.example.habin.shopcar.viewdemo.view.TestView
+            android:layout_width="300dp"
+            android:layout_height="300dp" />
     </LinearLayout>
-
-
-    <Button
-        android:id="@+id/bt_left_to_right"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:text="从左到右"
-        android:onClick="onViewClicked"
-        />
-    <Button
-        android:id="@+id/bt_right_to_left"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:text="从右到左"
-        android:onClick="onViewClicked"
-        />
-    <com.example.habin.shopcar.viewdemo.view.TestView
-        android:layout_width="300dp"
-        android:layout_height="300dp"/>
-
-</LinearLayout>
+</ScrollView>

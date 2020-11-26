@@ -54,7 +54,7 @@
                 android:layout_toRightOf="@+id/tv_shop_car"
                 android:background="@drawable/bg_shape_386ffe"
                 android:padding="10dp"
-                android:text="回收员布局"
+                android:text="自定义图2"
                 android:textColor="@color/white" />
 
             <Button
@@ -66,7 +66,7 @@
                 android:layout_toRightOf="@+id/tv_cutlery"
                 android:background="@drawable/bg_shape_386ffe"
                 android:padding="10dp"
-                android:text="工资详情布局"
+                android:text="自定义图3"
                 android:textColor="@color/white" />
         </LinearLayout>
         <View
@@ -87,7 +87,7 @@
                 android:layout_margin="10dp"
                 android:background="@drawable/bg_shape_386ffe"
                 android:padding="10dp"
-                android:text="底部导航"
+                android:text="自定义图4"
                 android:textColor="@color/white" />
 
             <Button
@@ -99,7 +99,7 @@
                 android:layout_toRightOf="@+id/tv_shop_car"
                 android:background="@drawable/bg_shape_386ffe"
                 android:padding="10dp"
-                android:text="手写签名"
+                android:text="自定义图5"
                 android:textColor="@color/white" />
 
             <Button
@@ -111,7 +111,7 @@
                 android:layout_toRightOf="@+id/tv_cutlery"
                 android:background="@drawable/bg_shape_386ffe"
                 android:padding="10dp"
-                android:text="自定义View"
+                android:text="自定义图6"
                 android:textColor="@color/white" />
         </LinearLayout>
         <View

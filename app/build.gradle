@@ -16,6 +16,21 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    /** 测试*/
+    flavorDimensions "shopcar"
+    productFlavors {
+        free {
+            dimension "shopcar"
+            applicationId 'com.example.habin.shopcar.free'
+        }
+
+        paid {
+            dimension "shopcar"
+            applicationId 'com.example.habin.shopcar.paid'
+        }
+    }
+
     compileOptions {
         sourceCompatibility = 1.8
         targetCompatibility = 1.8

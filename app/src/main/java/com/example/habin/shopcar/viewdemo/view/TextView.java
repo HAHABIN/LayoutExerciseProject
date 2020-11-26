@@ -56,7 +56,7 @@ public class TextView extends View {
      * */
     public TextView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        //获取自定义属性
+        //获取自定义属`性
         TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.TextView);
 
         mText = array.getString(R.styleable.TextView_DemoText);
@@ -139,10 +139,10 @@ public class TextView extends View {
          * */
         Paint.FontMetricsInt fontMetricsInt = mPaint.getFontMetricsInt();
         int dy = (fontMetricsInt.bottom-fontMetricsInt.top)/2-fontMetricsInt.bottom;
-        int baseLine = getHeight()/2 +dy;
+        int baseLine = getHeight()/2 + dy;
         int x = getPaddingLeft();
         /**
-         * (x，y)所代表的位置是所画图形对应的矩形的左上角点。但在drawText中是非常例外的，y所代表的是基线的位置！
+         * (x，y)所代表的位置是所画图形对应的矩形的左上角点。但在drawText中是非常例外的！
          * */
         canvas.drawText(mText,x,baseLine,mPaint);
     }

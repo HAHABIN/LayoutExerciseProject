@@ -37,6 +37,14 @@ public class CommonUtils {
                 ,getContext().getResources().getDisplayMetrics());
     }
     public static float dp2px(float dp) {
-        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,dp, Resources.getSystem().getDisplayMetrics());
+        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,dp,
+                Resources.getSystem().getDisplayMetrics());
+    }
+
+    public static void main(String[] args) {
+
+        for (char i = 'A';i<'A' + 26;i++) {
+            System.out.println(i);
+        }
     }
 }

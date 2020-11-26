@@ -4,10 +4,46 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".viewdemo.Test2ViewActivity">
 
     <com.example.habin.shopcar.viewdemo.view.Dashboard
-        android:layout_width="300dp"
-        android:layout_height="300dp"/>
+        android:id="@+id/db_test"
+        android:layout_width="100dp"
+        android:layout_height="100dp" />
 
+    <com.example.habin.shopcar.viewdemo.view.PieChartView
+        android:layout_toRightOf="@+id/db_test"
+        android:layout_width="100dp"
+        android:layout_height="100dp" />
+
+    <com.example.habin.shopcar.viewdemo.view.RatingStarsView
+        app:starCount="10"
+        app:normalStar="@mipmap/ic_star_normal"
+        app:selectedStar="@mipmap/ic_star_selected"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/db_test" />
+
+    <com.example.habin.shopcar.viewdemo.view.LetterSideBarView
+        android:id="@+id/lsb_test"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:paddingHorizontal="5dp"
+        android:background="#837979"
+        />
+
+    <TextView
+        android:id="@+id/tv_letter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:background="@color/black"
+        android:textSize="16sp"
+        android:visibility="gone"
+        android:layout_centerInParent="true"
+        />
 </RelativeLayout>
